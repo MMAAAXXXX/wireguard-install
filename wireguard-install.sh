@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# https://github.com/l-n-s/wireguard-install
+# https://github.com/MMAAAXXXX/wireguard-install
 #
 # Copyright (c) 2018 Viktor Villainov. Released under the MIT License.
 
@@ -132,14 +132,14 @@ Address = $CLIENT_ADDRESS/$PRIVATE_SUBNET_MASK
 DNS = $CLIENT_DNS
 [Peer]
 PublicKey = $SERVER_PUBKEY
-AllowedIPs = 0.0.0.0/0, ::/0
+AllowedIPs = 0.0.0.0/0
 Endpoint = $SERVER_HOST:$SERVER_PORT
 PersistentKeepalive = 25" > $HOME/$CLIENT_NAME-wg0.conf
 qrencode -t ansiutf8 -l L < $HOME/$CLIENT_NAME-wg0.conf
 
     echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
     echo "net.ipv4.conf.all.forwarding=1" >> /etc/sysctl.conf
-    echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
+    echo "net.ipv6.conf.all.forwarding=0" >> /etc/sysctl.conf
     sysctl -p
 
     if [ "$DISTRO" == "CentOS" ]; then
@@ -192,7 +192,7 @@ Address = $CLIENT_ADDRESS/$PRIVATE_SUBNET_MASK
 DNS = $CLIENT_DNS
 [Peer]
 PublicKey = $SERVER_PUBKEY
-AllowedIPs = 0.0.0.0/0, ::/0 
+AllowedIPs = 0.0.0.0/0
 Endpoint = $SERVER_ENDPOINT
 PersistentKeepalive = 25" > $HOME/$CLIENT_NAME-wg0.conf
 qrencode -t ansiutf8 -l L < $HOME/$CLIENT_NAME-wg0.conf
